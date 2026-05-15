@@ -1,0 +1,67 @@
+{
+  "name": "@project-validator/cli",
+  "version": "1.0.0-alpha.1",
+  "description": "Universal project validation engine — CLI for static analysis, compile validation, runtime checks, and health scoring",
+  "type": "module",
+  "bin": {
+    "project-validate": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "clean": "Remove-Item -Recurse -Force -Path dist -ErrorAction SilentlyContinue"
+  },
+  "dependencies": {
+    "@project-validator/core": "workspace:*",
+    "commander": "^13.0.0",
+    "chalk": "^5.4.0",
+    "ora": "^8.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "tsup": "^8.4.0",
+    "vitest": "^3.0.0",
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "author": {
+    "name": "Ranit Saha",
+    "email": "contact@coderooz.in",
+    "url": "https://coderooz.in"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/project-validator.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/project-validator/issues"
+  },
+  "homepage": "https://github.com/coderooz/project-validator#readme",
+  "keywords": [
+    "validation",
+    "cli",
+    "static-analysis",
+    "ci",
+    "code-quality",
+    "typescript",
+    "nextjs"
+  ]
+}

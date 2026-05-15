@@ -1,0 +1,33 @@
+{
+  "name": "project-validator-monorepo",
+  "private": true,
+  "description": "Monorepo for @project-validator — universal project validation engine",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "clean": "pnpm -r clean",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "prepare": "pnpm build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": {
+    "name": "Ranit Saha",
+    "email": "contact@coderooz.in",
+    "url": "https://coderooz.in"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coderooz/project-validator"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/project-validator/issues"
+  },
+  "homepage": "https://github.com/coderooz/project-validator#readme",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

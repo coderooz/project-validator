@@ -1,0 +1,31 @@
+# Auto-label PRs based on changed paths
+
+"core":
+  - packages/core/src/**
+
+"cli":
+  - packages/cli/src/**
+
+"adapters":
+  - packages/adapters/src/**
+
+"docs":
+  - docs/**
+  - **/*.md
+
+"tests":
+  - packages/core/test/**
+  - **/*.test.ts
+
+"workflows":
+  - .github/workflows/**
+  - .github/*.yml
+
+"dependencies":
+  - pnpm-lock.yaml
+  - package.json
+  - packages/*/package.json
+
+"release":
+  - .github/workflows/release.yml
+  - CHANGELOG.md

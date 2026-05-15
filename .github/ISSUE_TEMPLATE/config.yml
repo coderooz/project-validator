@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/coderooz/project-validator#readme
+    about: Check the documentation first
+  - name: Discord Community
+    url: https://discord.gg/coderooz
+    about: Join our Discord for community support
+  - name: GitHub Discussions
+    url: https://github.com/coderooz/project-validator/discussions
+    about: Start a discussion for open-ended topics

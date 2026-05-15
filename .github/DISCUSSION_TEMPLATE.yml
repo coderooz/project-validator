@@ -1,0 +1,30 @@
+labels:
+  - discussion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Discussion Guidelines
+        - Be respectful and constructive
+        - Search for existing discussions before posting
+        - Stay on topic
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Ideas & Proposals
+        - Q&A / Help
+        - Show and Tell
+        - General
+    validations:
+      required: true
+
+  - type: textarea
+    id: body
+    attributes:
+      label: Discussion
+      description: Share your thoughts
+    validations:
+      required: true

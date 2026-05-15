@@ -1,0 +1,93 @@
+{
+  "name": "@project-validator/core",
+  "version": "1.0.0-alpha.1",
+  "description": "Universal project validation engine — scanner, dependency graph, pipeline, validators, scoring, reporting",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    },
+    "./pipeline": {
+      "types": "./dist/pipeline/index.d.ts",
+      "import": "./dist/pipeline/index.js"
+    },
+    "./validators": {
+      "types": "./dist/validators/index.d.ts",
+      "import": "./dist/validators/index.js"
+    },
+    "./reporters": {
+      "types": "./dist/reporters/index.d.ts",
+      "import": "./dist/reporters/index.js"
+    },
+    "./plugins": {
+      "types": "./dist/plugins/index.d.ts",
+      "import": "./dist/plugins/index.js"
+    },
+    "./scanner": {
+      "types": "./dist/scanner/index.d.ts",
+      "import": "./dist/scanner/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "clean": "Remove-Item -Recurse -Force -Path dist -ErrorAction SilentlyContinue"
+  },
+  "dependencies": {
+    "ts-morph": "^25.0.0",
+    "fast-glob": "^3.3.3",
+    "execa": "^9.5.0",
+    "tree-kill": "^1.2.2",
+    "undici": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "tsup": "^8.4.0",
+    "vitest": "^3.0.0",
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "author": {
+    "name": "Ranit Saha",
+    "email": "contact@coderooz.in",
+    "url": "https://coderooz.in"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/project-validator.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/project-validator/issues"
+  },
+  "homepage": "https://github.com/coderooz/project-validator#readme",
+  "keywords": [
+    "validation",
+    "project-validation",
+    "static-analysis",
+    "ci",
+    "code-quality",
+    "typescript",
+    "nextjs",
+    "react"
+  ]
+}

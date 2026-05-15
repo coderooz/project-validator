@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Check for circular deps
+        run: npx madge --circular --extensions ts,tsx packages/ || true
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+      - name: TypeScript check (core)
+        run: npx tsc --noEmit
+        working-directory: packages/core
+
+      - name: TypeScript check (cli)
+        run: npx tsc --noEmit
+        working-directory: packages/cli
+
+      - name: TypeScript check (adapters)
+        run: npx tsc --noEmit
+        working-directory: packages/adapters
+
+  e2e:
+    name: E2E Validation
+    runs-on: ubuntu-latest
+    needs: [quality]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+      - name: Validate project-validator itself
+        run: node --input-type=module -e "
+          import { validate } from './packages/core/dist/index.js';
+          const report = await validate({ cwd: '.', phases: ['static', 'environment'] });
+          console.log('E2E Passed:', report.summary.passed + '/' + report.summary.total);
+          console.log('Health:', report.healthScore.overall + '/100');
+          process.exit(report.summary.critical > 0 ? 1 : 0);
+        "
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: validation-report
+          path: reports/

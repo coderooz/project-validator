@@ -1,0 +1,13 @@
+{
+  "name": "sample-project",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  }
+}

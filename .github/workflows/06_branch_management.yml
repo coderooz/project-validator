@@ -1,0 +1,43 @@
+name: Branch Management
+
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  enforce:
+    name: Enforce Branch Rules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch naming convention
+        id: branch_check
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|hotfix|docs|chore|release)/ ]]; then
+            echo "::warning::Branch name '$BRANCH_NAME' does not follow convention. Use: feature/, fix/, hotfix/, docs/, chore/, release/"
+          fi
+
+      - name: Check PR title format
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          if [[ ! "$TITLE" =~ ^(feat|fix|docs|chore|refactor|test|ci|perf|style|build|revert)(\(.+\))?:\ .+ ]]; then
+            echo "::warning::PR title '$TITLE' does not follow conventional commits format. Use: feat: | fix: | docs: | chore: | refactor: | test: | ci: | perf:"
+          fi
+
+  check_commits:
+    name: Check Commit Messages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check conventional commits
+        uses: webiny/action-conventional-commits@v1.3.0
+        with:
+          allowed-commit-types: "feat,fix,docs,chore,refactor,test,ci,perf,style,build,revert"

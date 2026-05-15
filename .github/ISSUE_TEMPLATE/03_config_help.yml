@@ -1,0 +1,45 @@
+name: Configuration Help
+description: Questions about configuring project-validator
+title: "[Config]: "
+labels: ["question"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Need help configuring project-validator for your project?
+
+  - type: dropdown
+    id: project_type
+    attributes:
+      label: Project Type
+      options:
+        - Next.js
+        - React (Vite/CRA)
+        - Node.js / Express
+        - NestJS
+        - Monorepo
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Current Configuration
+      description: Paste your current config file (if any)
+      render: json
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: What are you trying to achieve?
+      description: Describe what you want to configure
+    validations:
+      required: true
+
+  - type: textarea
+    id: attempts
+    attributes:
+      label: What have you tried?
+      description: Steps you've already taken

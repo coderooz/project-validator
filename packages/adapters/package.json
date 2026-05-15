@@ -1,0 +1,68 @@
+{
+  "name": "@project-validator/adapters",
+  "version": "1.0.0-alpha.1",
+  "description": "Framework adapters for project-validator — Next.js, React, and more",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./next": {
+      "types": "./dist/next-adapter.d.ts",
+      "import": "./dist/next-adapter.js"
+    },
+    "./react": {
+      "types": "./dist/react-adapter.d.ts",
+      "import": "./dist/react-adapter.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "clean": "Remove-Item -Recurse -Force -Path dist -ErrorAction SilentlyContinue"
+  },
+  "dependencies": {
+    "@project-validator/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "tsup": "^8.4.0",
+    "vitest": "^3.0.0",
+    "@types/node": "^22.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "author": {
+    "name": "Ranit Saha",
+    "email": "contact@coderooz.in",
+    "url": "https://coderooz.in"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coderooz/project-validator.git",
+    "directory": "packages/adapters"
+  },
+  "bugs": {
+    "url": "https://github.com/coderooz/project-validator/issues"
+  },
+  "homepage": "https://github.com/coderooz/project-validator#readme",
+  "keywords": [
+    "nextjs",
+    "react",
+    "adapter",
+    "validation",
+    "framework"
+  ]
+}
