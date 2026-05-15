@@ -46,7 +46,7 @@
     "clean": "Remove-Item -Recurse -Force -Path dist -ErrorAction SilentlyContinue"
   },
   "dependencies": {
-    "ts-morph": "^25.0.0",
+    "ts-morph": "^28.0.0",
     "fast-glob": "^3.3.3",
     "execa": "^9.5.0",
     "tree-kill": "^1.2.2",
